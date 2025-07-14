@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+ .allMovies {
+    @apply space-y-9;
+
+    & ul {
+      @apply grid grid-cols-1 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5;
+    }
+  }
+
+.card {
+    @apply bg-red-500 p-3 rounded rounded-lg border border-solid border-black
+}
