@@ -2,6 +2,8 @@ import { useState, useEffect} from 'react'
 import './App.css'
 import Search from './components/Search'
 import MovieCards from './components/MovieCards'
+import Slider from 'react-slick'
+import PopularSlider from './components/PopularSlider'
 
 function App() {
 
@@ -19,7 +21,7 @@ function App() {
 }
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [movieList, setMovieList] = useState([]);
+  const [popularMovieList, setPopularMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   //getting the movies
@@ -36,12 +38,12 @@ function App() {
     }
 
     const data = await response.json();
-    setMovieList(data.results || []);
-    console.log(data.results)
+    setPopularMovieList(data.results || []);
+    
   } catch (error) {
     console.error(`Failed fetching movies: ${error}`);
     setErrorMessage('Failed fetching movies, try again later');
-    setMovieList([]); // Clear on failure
+    setPopularMovieList([]); // Clear on failure
   } finally {
     setIsLoading(false);
   }
@@ -57,12 +59,11 @@ function App() {
 
   return (
     <>
-     <h1 className='text-8xl mt-50'>MOVIE FINDER</h1>
+     <h1 className='text-8xl mt-50'>MOVIE LIBRARY</h1>
      <Search searchTerm = {searchTerm} setSearchTerm = {setSearchTerm} />
       <p>categories</p>
-      <p>type input</p>
      <h3>POPULAR</h3>
-     <section className='allMovies'>
+     <section className='popularMovies'>
      {isLoading && <p>loading movies . . .</p>}
      
       {isLoading ? (
@@ -70,12 +71,8 @@ function App() {
                     ): errorMessage ? (
                     <p className='text-red-500'>{errorMessage}</p>
                     ): (
-                        <ul>
-                            {movieList.map((movie) => (
-                                // when mapping you must have a unique key
-                                <MovieCards key = {movie.id} movie = {movie} />
-                            ))}
-                        </ul>
+                        <PopularSlider movies={popularMovieList} />
+
                     )}
                     </section>
      

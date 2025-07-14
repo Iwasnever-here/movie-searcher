@@ -1,13 +1,37 @@
 @import 'tailwindcss';
+@import 'slick-carousel/slick/slick.css'; 
+@import 'slick-carousel/slick/slick-theme.css';
 
- .allMovies {
-    @apply space-y-9;
+
+body{
+    @apply bg-black text-white
+}
+ .popularMovies {
+    @apply space-y-9 mt-10;
 
     & ul {
-      @apply grid grid-cols-1 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5;
+      @apply grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6;
     }
   }
 
-.card {
-    @apply bg-red-500 p-3 rounded rounded-lg border border-solid border-black
+.content {
+    @apply mt-2 flex justify-between items-center ;
+}
+
+
+.rating {
+  @apply flex items-center space-x-2 text-right;
+}
+
+
+.year {
+    @apply text-left
+}
+
+img {
+  @apply rounded rounded-lg 
+}
+
+.card{
+  @apply hover:border-2 border-solid border-red-500 p-2 rounded rounded-lg
 }
