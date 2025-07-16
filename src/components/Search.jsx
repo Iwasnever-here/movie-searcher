@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaSearch } from "react-icons/fa";
 
-const Search = ({searchTerm, setSearchTerm}) => {
+const Search = ({searchTerm, setSearchTerm, handleSearch}) => {
   return (
     <div className=''>
       <input 
@@ -12,7 +12,7 @@ const Search = ({searchTerm, setSearchTerm}) => {
       onChange = {(event) => setSearchTerm(event.target.value)}
       />
       
-      <FaSearch className='inline ml-4 text-3xl' onClick={() => console.log(searchTerm)}
+      <FaSearch className='inline ml-4 text-3xl' onClick={handleSearch}
 />
     </div>
   )
