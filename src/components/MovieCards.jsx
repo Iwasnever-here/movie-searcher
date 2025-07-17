@@ -1,15 +1,17 @@
 import React from 'react'
 import { FaStar } from "react-icons/fa";
+import fallbackPoster from '../assets/poster-not-here.png';
+
 
 const MovieCards = ({movie}) => {
   return (
     <div className='card' onClick={() => console.log(movie.title)}>
   
-      <img
+      <img 
         src={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : 'no'
+            : fallbackPoster
         }
         alt={movie.title}
       />

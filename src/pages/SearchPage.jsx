@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import MovieCards from '../components/MovieCards';
 
-
-const SearchPage = ({ searchTerm, setSearchTerm }) => {
+const SearchPage = ({ searchTerm }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [searchList, setSearchList] = useState([]);
@@ -18,47 +17,57 @@ const SearchPage = ({ searchTerm, setSearchTerm }) => {
     },
   };
 
-  const fetchSearchMovies = async (query) => {
+  const fetchSearchMoviesAndTV = async (query) => {
     setIsLoading(true);
     setErrorMessage('');
 
     try {
-      const endpoint = `${API_URL}/search/movie?query=${encodeURIComponent(query)}`;
-      const response = await fetch(endpoint, API_OPTIONS);
+      // Movie search endpoint
+      const movieEndpoint = `${API_URL}/search/movie?include_adult=false&query=${encodeURIComponent(query)}`;
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch movies');
+      // TV search endpoint
+      const tvEndpoint = `${API_URL}/search/tv?include_adult=false&query=${encodeURIComponent(query)}`;
+
+      // Fetch movies and TV in parallel
+      const [movieResponse, tvResponse] = await Promise.all([
+        fetch(movieEndpoint, API_OPTIONS),
+        fetch(tvEndpoint, API_OPTIONS),
+      ]);
+
+      if (!movieResponse.ok || !tvResponse.ok) {
+        throw new Error('Failed to fetch movies or TV shows');
       }
 
-      const data = await response.json();
+      const movieData = await movieResponse.json();
+      const tvData = await tvResponse.json();
 
-      if (!data.results || data.results.length === 0) {
+      // Combine results, add a type field to distinguish
+      const combinedResults = [
+        ...(movieData.results || []).map(item => ({ ...item, media_type: 'movie' })),
+        ...(tvData.results || []).map(item => ({ ...item, media_type: 'tv' })),
+      ];
+
+      if (combinedResults.length === 0) {
         setErrorMessage('No results found');
         setSearchList([]);
         return;
       }
 
-      setSearchList(data.results);
+      setSearchList(combinedResults);
     } catch (error) {
-      console.error('Failed fetching movies:', error);
-      setErrorMessage('Failed fetching movies, try again later');
+      console.error('Failed fetching movies and TV shows:', error);
+      setErrorMessage('Failed fetching movies and TV shows, try again later');
       setSearchList([]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleSearch = () => {
-    if (searchTerm.trim() === '') return;
-    fetchSearchMovies(searchTerm);
-  };
-
- useEffect(() => {
+  useEffect(() => {
     if (searchTerm.trim() !== '') {
-      fetchSearchMovies(searchTerm);
+      fetchSearchMoviesAndTV(searchTerm);
     }
   }, [searchTerm]);
-
 
   return (
     <div className="p-4">
@@ -69,8 +78,9 @@ const SearchPage = ({ searchTerm, setSearchTerm }) => {
 
       {searchList.length > 0 && (
         <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {searchList.map((movie) => (
-            <MovieCards key={movie.id} movie={movie} />
+          {searchList.map((item) => (
+            
+            <MovieCards key={`${item.media_type}-${item.id}`} movie={item} />
           ))}
         </ul>
       )}

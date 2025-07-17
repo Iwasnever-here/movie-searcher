@@ -5,11 +5,10 @@ import MovieCards from "./MovieCards";
 
 const PopularSlider = ({ movies }) => {
   const settings = {
-    dots: true,
     infinite: true,
     speed: 300,
     slidesToShow: 5,
-    slidesToScroll: 3,
+    slidesToScroll: 2,
     responsive: [
       {
         breakpoint: 1024,

@@ -7,10 +7,10 @@ body{
     @apply bg-black text-white
 }
  .popularMovies {
-    @apply space-y-9 mt-10;
+    @apply space-y-9 mt-10 ;
 
     & ul {
-      @apply grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6;
+      @apply grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 ;
     }
   }
 
@@ -33,13 +33,16 @@ img {
 }
 
 .card{
-  @apply hover:border-2 border-solid border-red-500 p-2 rounded rounded-lg
+  @apply hover:border-2 border-solid border-red-500 p-2 rounded rounded-lg 
 }
 
-.searchMovies {
+.Movies {
     @apply space-y-9 mt-10;
 
     & ul {
       @apply grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6;
+    }
+    &img {
+      @apply h-110
     }
   }
