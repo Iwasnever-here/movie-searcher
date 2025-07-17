@@ -10,6 +10,10 @@ const Search = ({searchTerm, setSearchTerm, handleSearch}) => {
       placeholder='search here . . .'
       value = {searchTerm}
       onChange = {(event) => setSearchTerm(event.target.value)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter') handleSearch();
+}}
+
       />
       
       <FaSearch className='inline ml-4 text-3xl' onClick={handleSearch}
