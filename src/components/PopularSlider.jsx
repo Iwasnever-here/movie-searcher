@@ -7,16 +7,16 @@ const PopularSlider = ({ movies }) => {
   const settings = {
     infinite: true,
     speed: 300,
-    slidesToShow: 5,
+    slidesToShow: 8,
     slidesToScroll: 2,
     responsive: [
       {
         breakpoint: 1024,
-        settings: { slidesToShow: 3 }
+        settings: { slidesToShow: 4 }
       },
       {
         breakpoint: 640,
-        settings: { slidesToShow: 2 }
+        settings: { slidesToShow: 3 }
       }
     ]
   };

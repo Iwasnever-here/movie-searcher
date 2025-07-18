@@ -1,8 +1,8 @@
 import { useState} from 'react'
 import './App.css'
 import Search from './components/Search'
-import { useNavigate, BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-
+import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
+import { FaHome } from "react-icons/fa";
 
 import DiscoverPage from './pages/DiscoverPage'
 import SearchPage from './pages/SearchPage'
@@ -22,10 +22,17 @@ function App() {
     }
   };
 
+  const goBack = () => {
+    setSearchTerm('')
+    setSearchQuery('')
+    navigate('/discover')
+  }
+
 
   return (
     
       <div className='App'>
+        <FaHome  className='text-3xl' onClick={goBack}/>
         <h1 className='text-8xl mt-50'>MOVIE LIBRARY</h1>
       
       
