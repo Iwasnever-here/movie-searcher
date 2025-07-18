@@ -13,7 +13,7 @@ tailwind
 
 - [x] movie searching
 - [x] display most popular
-- [ ] advance search by genres
+- [x] Tv/Movie filtering options
 - [ ] other advance search options
 - [ ] recomendation
 - [ ] movie information
