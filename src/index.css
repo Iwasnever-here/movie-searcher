@@ -9,10 +9,6 @@ body{
  .popular {
     @apply space-y-9 mt-10 ;
 
-    & ul {
-      @apply grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 ;
-    }
-
     & h2 {
       @apply text-left text-2xl text-neutral-500 ml-7
     }
@@ -44,7 +40,7 @@ img {
     @apply space-y-9 mt-10;
 
     & ul {
-      @apply grid grid-cols-2 gap-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6;
+      @apply grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8;
     }
     &img {
       @apply h-110

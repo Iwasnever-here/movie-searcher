@@ -1,3 +1,5 @@
+
+
 import React from 'react'
 import { FaSearch } from "react-icons/fa";
 
@@ -10,10 +12,11 @@ const filters = [
 
 const Search = ({ searchTerm, setSearchTerm, handleSearch, filter, setFilter, showFilters }) => {
   return (
-    <div className='mt-10'>
-      <div className='flex items-center gap-4'>
+     <div className='mt-10 '>
+
+      <div className='flex justify-center items-center gap-4'>
         <input
-          className='p-3 w-full bg-red-500 rounded-xl border border-solid border-black'
+          className='p-3 w-100 bg-red-500 rounded-xl border border-solid border-black'
           type='text'
           placeholder='search here . . .'
           value={searchTerm}

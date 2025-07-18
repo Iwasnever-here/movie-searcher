@@ -8,6 +8,7 @@ import DiscoverPage from './pages/DiscoverPage'
 import SearchPage from './pages/SearchPage'
 
 
+
 function App() {
 
   const location = useLocation();

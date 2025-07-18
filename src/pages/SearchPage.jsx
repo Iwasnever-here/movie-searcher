@@ -68,7 +68,7 @@ const SearchPage = ({ searchTerm, filter }) => {
   }, [searchTerm, filter]);
 
   return (
-    <div className="p-4">
+    <div className="p-4 Movies">
       <h3 className="text-xl font-bold mb-4 text-white">SEARCH RESULTS</h3>
 
       {isLoading && <p className="text-white">Loading . . .</p>}
